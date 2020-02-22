@@ -1,0 +1,55 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname hw04) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;Sarah Harvey
+;hw04
+;https://www.radford.edu/~itec380/2020spring-ibarland/Homeworks/hw04/
+
+;Design Recipe:
+;1. Make data definition
+;2. Give some examples of that data type
+;3. Template:
+
+;Data Definition:
+(define-struct team (name offense defense))
+;   make-team : string, real, real -> boolean
+
+;Examples of the data
+(define team1 (make-team "t1" 80 50))
+(define team2 (make-team "t2" 60 90))
+(define team3 (make-team "Lakers" 113.4 106.8))
+
+; func-for-team : team -> ????
+; Return ???
+(define (func-for-team a-team)
+  (... (team-name a-team)
+   ... (team-offense a-team)
+   ... (team-defense a-team)))
+
+;team>? : team, team -> boolean
+;Return a boolean reprsenting if the first team, `team1` is greater than the second team, `team2`.
+;One team is greater if their offense is higher than the other's defense, and it's defense is higher than the other's offense.
+(define (team>? team1 team2)
+  (and (> (team-offense team1) (team-defense team2)) (> (team-defense team1) (team-offense team2))))
+
+(check-expect (team>? (make-team "t1" 80 50) (make-team "t2" 60 90)) #false)
+(check-expect (team>? (make-team "t1" 90 60) (make-team "t2" 50 80)) #true)
+(check-expect (team>? (make-team "t1" 80 60) (make-team "t2" 50 90)) #false)
+(check-expect (team>? (make-team "t1" 90 50) (make-team "t2" 60 80)) #false)
+(check-expect (team>? (make-team "t1" 80 50) (make-team "t2" 60 90)) #false)
+(check-expect (team>? (make-team "t1" 80 60) (make-team "t2" 60 80)) #false)
+(check-expect (team>? (make-team "t1" 80 50) (make-team "t2" 60 80)) #false)
+(check-expect (team>? (make-team "t1" 80 60) (make-team "t2" 50 80)) #false)
+(check-expect (team>? (make-team "t1" 80 50) (make-team "t2" 50 90)) #false)
+(check-expect (team>? (make-team "t1" 90 60) (make-team "t2" 60 80)) #false)
+
+
+
+
+
+
+
+(define (team>? team1 team2)
+  ...)
+
+(check-expect (team>? (make-team "t1" 80 50) (make-team "t2" 60 90)) false)
